@@ -45,7 +45,52 @@
             msg.innerHTML = "RESULT: RECORD NOT FOUND! <br><br> The document " + input + " is not verified in our system. Contact support.";
         }, 3000);
     }
-</script>
+<script>
+    function startProcess() {
+        var input = document.getElementById('userInput').value; // ইউজার যা লিখবে
+        var loader = document.getElementById('loader');
+        var msg = document.getElementById('message');
 
-</body>
-</html>
+        if(input === "") { alert("Please enter your Code!"); return; }
+
+        loader.style.display = "block";
+        msg.style.display = "none";
+
+        setTimeout(function() {
+            loader.style.display = "none";
+            msg.style.display = "block";
+            
+            // নিচের অংশে আপনি আপনার নিজের কোড এবং ফাইলের নাম বসাবেন
+            // -------------------------------------------------------
+            
+            if(input === "USA-101") { // ১ নম্বর কোড
+                showResult("MD SHAHIN", "Approved", "shahin.pdf");
+            } 
+            else if(input === "USA-102") { // ২ নম্বর কোড
+                showResult("RAHIM ALI", "Processing", "rahim.pdf");
+            }
+            else if(input === "ABC-555") { // ৩ নম্বর কোড
+                showResult("KARIM UDDIN", "Verified", "karim.pdf");
+            }
+            else {
+                // যদি কোড না মিলে তবে এই মেসেজ দেখাবে
+                msg.style.backgroundColor = "#f8d7da";
+                msg.style.color = "#721c24";
+                msg.innerHTML = "<strong>RESULT: NOT FOUND!</strong><br>The Code '" + input + "' is not in our system.";
+            }
+            
+            // -------------------------------------------------------
+        }, 2500); // ২.৫ সেকেন্ড লোডিং হবে
+    }
+
+    // রেজাল্ট দেখানোর ফাংশন (এটি কোড ছোট রাখে)
+    function showResult(name, status, fileName) {
+        var msg = document.getElementById('message');
+        msg.style.backgroundColor = "#d4edda"; // সবুজ ব্যাকগ্রাউন্ড
+        msg.style.color = "#155724";
+        msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
+                        "Name: " + name + "<br>" +
+                        "Document: " + status + "<br><br>" +
+                        "<a href='" + fileName + "' target='_blank' style='display:inline-block; background: #002366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;'>View & Download PDF</a>";
+    }
+</script>
