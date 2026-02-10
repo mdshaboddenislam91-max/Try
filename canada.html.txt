@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Verification - Form</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e9ecef; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .verify-box { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 350px; text-align: center; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; }
+        button { width: 100%; padding: 12px; background: #002366; color: #fff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:hover { background: #001540; }
+        #loader { display: none; margin-top: 20px; font-weight: bold; color: #555; }
+        #message { margin-top: 20px; font-weight: bold; display: none; padding: 15px; border-radius: 10px; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+
+<div class="verify-box">
+    <h2 style="color: #002366;">OFFICIAL PORTAL</h2>
+    <p>Enter your Reference/Passport Number</p>
+    <input type="text" id="userInput" placeholder="Reference Number">
+    <button onclick="startProcess()">SUBMIT & VERIFY</button>
+
+    <div id="loader">Checking Official Database...</div>
+    <div id="message"></div>
+</div>
+
+<script>
+    function startProcess() {
+        var input = document.getElementById('userInput').value;
+        var loader = document.getElementById('loader');
+        var msg = document.getElementById('message');
+
+        if(input === "") { alert("Please enter a number!"); return; }
+
+        loader.style.display = "block";
+        msg.style.display = "none";
+
+        setTimeout(function() {
+            loader.style.display = "none";
+            msg.style.display = "block";
+            msg.className = "error";
+            msg.innerHTML = "RESULT: RECORD NOT FOUND! <br><br> The document " + input + " is not verified in our system. Contact support.";
+        }, 3000);
+    }
+</script>
+
+</body>
+</html>
