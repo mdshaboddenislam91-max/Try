@@ -1,6 +1,6 @@
 <script>
     function startProcess() {
-        // .trim() এবং .toUpperCase() যোগ করা হয়েছে যাতে ভুল হওয়ার সম্ভাবনা না থাকে
+        // ইউজার যা লিখবে তা বড় হাতের অক্ষরে রূপান্তর করা হবে
         var input = document.getElementById('userInput').value.trim().toUpperCase(); 
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
@@ -14,16 +14,16 @@
             loader.style.display = "none";
             msg.style.display = "block";
 
-            // এখানে AVCX কোডটি সেট করা আছে
+            // এখানে আপনার কোড AVCX সেট করা হয়েছে
             if(input === "AVCX") { 
-                msg.style.backgroundColor = "#d4edda"; // সবুজ ব্যাকগ্রাউন্ড
+                msg.style.backgroundColor = "#d4edda";
                 msg.style.color = "#155724";
                 msg.innerHTML = "<strong>Status: VERIFIED ✅</strong><br>" +
+                                "Name: Shahin Islam<br>" +
                                 "Document Found for: " + input + "<br><br>" +
                                 "<a href='shahin.pdf' target='_blank' style='display:inline-block; background:#002366; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;'>VIEW & DOWNLOAD PDF</a>";
             } 
             else {
-                // ভুল কোড দিলে যা দেখাবে
                 msg.style.backgroundColor = "#f8d7da";
                 msg.style.color = "#721c24";
                 msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified in our system.";
