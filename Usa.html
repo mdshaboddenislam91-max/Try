@@ -29,53 +29,39 @@
 
 <script>
     function startProcess() {
-        var input = document.getElementById('userInput').value;
+        var input = document.getElementById('userInput').value; // বক্সে যা লিখবেন
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
-        if(input === "") { alert("Please enter a number!"); return; }
+        if(input === "") { 
+            alert("Please enter a Reference Number!"); 
+            return; 
+        }
 
+        // লোডিং শুরু
         loader.style.display = "block";
         msg.style.display = "none";
 
         setTimeout(function() {
             loader.style.display = "none";
             msg.style.display = "block";
-            msg.className = "error";
-            msg.innerHTML = "RESULT: RECORD NOT FOUND! <br><br> The document " + input + " is not verified in our system. Contact support.";
-        }, 3000);
-    }
-<script>
-    function startProcess() {
-        var input = document.getElementById('userInput').value; // User ja likhbe
-        var loader = document.getElementById('loader');
-        var msg = document.getElementById('message');
 
-        if(input === "") { alert("Please enter your Reference Number!"); return; }
-
-        loader.style.display = "block"; // Loading shuru
-        msg.style.display = "none";
-
-        setTimeout(function() {
-            loader.style.display = "none"; // Loading bondho
-            msg.style.display = "block";
-
-            // --- EKHARE APNAR PDF LINK KORUN ---
-
-            if(input === "AVCX") { // Eita holo apnar Secret Code
-                msg.style.backgroundColor = "#d4edda";
+            // এখানে AVCX কোডটি সেট করা হয়েছে
+            if(input === "AVCX") { 
+                msg.style.backgroundColor = "#d4edda"; // সবুজ ব্যাকগ্রাউন্ড
                 msg.style.color = "#155724";
+                
+                // এখানে 'your-file.pdf' এর জায়গায় আপনার আপলোড করা পিডিএফের নাম দিন
                 msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
                                 "Document Found for: " + input + "<br><br>" +
-                                "<a href='shahin.pdf' target='_blank' style='background: #002366; color: white; padding: 10px; text-decoration: none; border-radius: 5px;'>View/Download PDF</a>";
+                                "<a href='shahin.pdf' target='_blank' style='display:inline-block; background:#002366; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;'>VIEW PDF DOCUMENT</a>";
             } 
             else {
-                // Jodi code vul hoy
+                // ভুল কোড দিলে যা দেখাবে
                 msg.style.backgroundColor = "#f8d7da";
                 msg.style.color = "#721c24";
-                msg.innerHTML = "<strong>RESULT: NOT FOUND!</strong><br>No document linked to this code.";
+                msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified in our system. Contact support.";
             }
-            
-        }, 2500); // 2.5 second por result ashbe
+        }, 2000); // ২ সেকেন্ড পর রেজাল্ট দেখাবে
     }
 </script>
