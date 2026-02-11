@@ -33,7 +33,7 @@
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
-        if(input === "") { alert("Please enter a number!"); return; }
+        if(input === "AVCX") { alert("Please enter a number!"); return; }
 
         loader.style.display = "block";
         msg.style.display = "none";
@@ -47,50 +47,35 @@
     }
 <script>
     function startProcess() {
-        var input = document.getElementById('userInput').value; // ইউজার যা লিখবে
+        var input = document.getElementById('userInput').value; // User ja likhbe
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
-        if(input === "") { alert("Please enter your Code!"); return; }
+        if(input === "") { alert("Please enter your Reference Number!"); return; }
 
-        loader.style.display = "block";
+        loader.style.display = "block"; // Loading shuru
         msg.style.display = "none";
 
         setTimeout(function() {
-            loader.style.display = "none";
+            loader.style.display = "none"; // Loading bondho
             msg.style.display = "block";
-            
-            // নিচের অংশে আপনি আপনার নিজের কোড এবং ফাইলের নাম বসাবেন
-            // -------------------------------------------------------
-            
-            if(input === "USA-101") { // ১ নম্বর কোড
-                showResult("MD SHAHIN", "Approved", "shahin.pdf");
+
+            // --- EKHARE APNAR PDF LINK KORUN ---
+
+            if(input === "12345") { // Eita holo apnar Secret Code
+                msg.style.backgroundColor = "#d4edda";
+                msg.style.color = "#155724";
+                msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
+                                "Document Found for: " + input + "<br><br>" +
+                                "<a href='shahin.pdf' target='_blank' style='background: #002366; color: white; padding: 10px; text-decoration: none; border-radius: 5px;'>View/Download PDF</a>";
             } 
-            else if(input === "USA-102") { // ২ নম্বর কোড
-                showResult("RAHIM ALI", "Processing", "rahim.pdf");
-            }
-            else if(input === "ABC-555") { // ৩ নম্বর কোড
-                showResult("KARIM UDDIN", "Verified", "karim.pdf");
-            }
             else {
-                // যদি কোড না মিলে তবে এই মেসেজ দেখাবে
+                // Jodi code vul hoy
                 msg.style.backgroundColor = "#f8d7da";
                 msg.style.color = "#721c24";
-                msg.innerHTML = "<strong>RESULT: NOT FOUND!</strong><br>The Code '" + input + "' is not in our system.";
+                msg.innerHTML = "<strong>RESULT: NOT FOUND!</strong><br>No document linked to this code.";
             }
             
-            // -------------------------------------------------------
-        }, 2500); // ২.৫ সেকেন্ড লোডিং হবে
-    }
-
-    // রেজাল্ট দেখানোর ফাংশন (এটি কোড ছোট রাখে)
-    function showResult(name, status, fileName) {
-        var msg = document.getElementById('message');
-        msg.style.backgroundColor = "#d4edda"; // সবুজ ব্যাকগ্রাউন্ড
-        msg.style.color = "#155724";
-        msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
-                        "Name: " + name + "<br>" +
-                        "Document: " + status + "<br><br>" +
-                        "<a href='" + fileName + "' target='_blank' style='display:inline-block; background: #002366; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;'>View & Download PDF</a>";
+        }, 2500); // 2.5 second por result ashbe
     }
 </script>
