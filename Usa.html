@@ -1,11 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Verification - USA</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #e9ecef; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .verify-box { background: #fff; padding: 40px; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); width: 350px; text-align: center; border-top: 5px solid #002366; }
+        input { width: 100%; padding: 12px; margin: 20px 0; border: 2px solid #ddd; border-radius: 10px; box-sizing: border-box; font-size: 16px; text-align: center; }
+        button { width: 100%; padding: 12px; background: #002366; color: #fff; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { background: #001540; transform: scale(1.02); }
+        #loader { display: none; margin-top: 20px; font-weight: bold; color: #555; }
+        #message { margin-top: 20px; font-weight: bold; display: none; padding: 15px; border-radius: 10px; line-height: 1.6; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .btn-download { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #28a745; color: white; text-decoration: none; border-radius: 5px; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="verify-box">
+    <h2 style="color: #002366; margin-bottom: 5px;">OFFICIAL PORTAL</h2>
+    <p style="color: #666; font-size: 14px;">Enter Reference/Passport Number</p>
+    
+    <input type="text" id="userInput" placeholder="Ex: AVCX">
+    <button onclick="startProcess()">SUBMIT & VERIFY</button>
+
+    <div id="loader">Checking Official Database...</div>
+    <div id="message"></div>
+</div>
+
 <script>
     function startProcess() {
         var input = document.getElementById('userInput').value;
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
-        if(input === "") { alert("Please enter a number!"); return; }
+        if(input === "") { 
+            alert("Please enter a number!"); 
+            return; 
+        }
 
+        // লোডিং এনিমেশন দেখানো
         loader.style.display = "block";
         msg.style.display = "none";
 
@@ -13,55 +49,22 @@
             loader.style.display = "none";
             msg.style.display = "block";
 
-            
-            if(input === "") { 
-                msg.style.backgroundColor = "#d4edda"; // সবুজ রঙ
-                msg.style.color = "#155724";
-                
-                // 'your-file.pdf' এর জায়গায় আপনার আপলোড করা পিডিএফ ফাইলের নাম দিন
+            // এখানে আপনার কোড এবং PDF এর নাম সেট করা হয়েছে
+            if(input.toUpperCase() === "AVCX") { 
+                msg.className = "success";
                 msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
-                                "Name: VERIFIED DOCUMENT<br><br>" +
-                                "<a href='your-file.pdf' target='_blank' style='display:inline-block; background:#1a237e; color:white; padding:10px; text-decoration:none; border-radius:5px;'>DOWNLOAD PDF</a>";
+                                "Document Name: Shahin's Permit<br>" +
+                                "Status: Record Found<br><br>" +
+                                "<a href='shahin.pdf' target='_blank' class='btn-download'>VIEW & DOWNLOAD PDF</a>";
             } 
             else {
-                // ভুল কোড দিলে যা দেখাবে
-                msg.style.backgroundColor = "#f8d7da";
-                msg.style.color = "#721c24";
-                msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified.";
+                // ভুল কোড দিলে যা হবে
+                msg.className = "error";
+                msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified in our system.";
             }
-        }, 2000);
-    }
-</script><script>
-    function startProcess() {
-        var input = document.getElementById('userInput').value;
-        var loader = document.getElementById('loader');
-        var msg = document.getElementById('message');
-
-        if(input === "") { alert("Please enter a number!"); return; }
-
-        loader.style.display = "block";
-        msg.style.display = "none";
-
-        setTimeout(function() {
-            loader.style.display = "none";
-            msg.style.display = "block";
-
-            // এখানে AVCX কোডটি সেট করা হয়েছে
-            if(input === "") { 
-                msg.style.backgroundColor = "#d4edda"; // সবুজ রঙ
-                msg.style.color = "#155724";
-                
-                // 'your-file.pdf' এর জায়গায় আপনার আপলোড করা পিডিএফ ফাইলের নাম দিন
-                msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
-                                "Name: VERIFIED DOCUMENT<br><br>" +
-                                "<a href='your-file.pdf' target='_blank' style='display:inline-block; background:#1a237e; color:white; padding:10px; text-decoration:none; border-radius:5px;'>DOWNLOAD PDF</a>";
-            } 
-            else {
-                // ভুল কোড দিলে যা দেখাবে
-                msg.style.backgroundColor = "#f8d7da";
-                msg.style.color = "#721c24";
-                msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified.";
-            }
-        }, 2000);
+        }, 2000); // ২ সেকেন্ড লোড হবে
     }
 </script>
+
+</body>
+</html>
