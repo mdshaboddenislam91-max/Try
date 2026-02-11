@@ -1,38 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Official Verification - USA</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
-        .verify-box { background: #ffffff; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 350px; text-align: center; border-top: 6px solid #1a237e; }
-        h2 { color: #1a237e; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        input { width: 100%; padding: 12px; margin-bottom: 20px; border: 2px solid #ddd; border-radius: 8px; font-size: 16px; text-align: center; box-sizing: border-box; }
-        button { width: 100%; padding: 12px; background: #1a237e; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
-        button:hover { background: #0d47a1; }
-        #loader { display: none; margin-top: 20px; font-weight: bold; color: #555; }
-        #message { margin-top: 20px; font-weight: bold; display: none; padding: 15px; border-radius: 8px; line-height: 1.5; }
-        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
-        .download-btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #2e7d32; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
-    </style>
-</head>
-<body>
-
-<div class="verify-box">
-    <h2>Official Portal</h2>
-    <p style="font-size: 14px; color: #666;">Enter Reference/Passport Number</p>
-    <input type="text" id="userInput" placeholder="Ex: AVCX">
-    <button onclick="verifyDoc()">SUBMIT & VERIFY</button>
-
-    <div id="loader">Searching Database...</div>
-    <div id="message"></div>
-</div>
-
 <script>
-    function verifyDoc() {
-        var input = document.getElementById('userInput').value.trim();
+    function startProcess() {
+        // .trim() এবং .toUpperCase() যোগ করা হয়েছে যাতে ভুল হওয়ার সম্ভাবনা না থাকে
+        var input = document.getElementById('userInput').value.trim().toUpperCase(); 
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
@@ -45,20 +14,20 @@
             loader.style.display = "none";
             msg.style.display = "block";
 
-            // এখানে আপনার কোড AVCX এবং ফাইলের নাম shahin.pdf দেওয়া হয়েছে
-            if(input.toUpperCase() === "AVCX") { 
-                msg.className = "success";
+            // এখানে AVCX কোডটি সেট করা আছে
+            if(input === "AVCX") { 
+                msg.style.backgroundColor = "#d4edda"; // সবুজ ব্যাকগ্রাউন্ড
+                msg.style.color = "#155724";
                 msg.innerHTML = "<strong>Status: VERIFIED ✅</strong><br>" +
-                                "File Found for: " + input.toUpperCase() + "<br><br>" +
-                                "<a href='shahin.pdf' target='_blank' class='download-btn'>VIEW & DOWNLOAD PDF</a>";
+                                "Document Found for: " + input + "<br><br>" +
+                                "<a href='shahin.pdf' target='_blank' style='display:inline-block; background:#002366; color:white; padding:10px 20px; text-decoration:none; border-radius:5px; font-weight:bold;'>VIEW & DOWNLOAD PDF</a>";
             } 
             else {
-                msg.className = "error";
+                // ভুল কোড দিলে যা দেখাবে
+                msg.style.backgroundColor = "#f8d7da";
+                msg.style.color = "#721c24";
                 msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified in our system.";
             }
-        }, 2500); // ২.৫ সেকেন্ড লোডিং হবে
+        }, 2000);
     }
 </script>
-
-</body>
-</html>
