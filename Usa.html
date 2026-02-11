@@ -13,22 +13,10 @@
             loader.style.display = "none";
             msg.style.display = "block";
 
-            // এখানে AVCX কোডটি সেট করা হয়েছে
-            if(input === "AVCX") { 
-                msg.style.backgroundColor = "#d4edda"; // সবুজ রঙ
-                msg.style.color = "#155724";
-                
-                // 'your-file.pdf' এর জায়গায় আপনার আপলোড করা পিডিএফ ফাইলের নাম দিন
-                msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
-                                "Name: VERIFIED DOCUMENT<br><br>" +
-                                "<a href='shahin.pdf' target='_blank' style='display:inline-block; background:#1a237e; color:white; padding:10px; text-decoration:none; border-radius:5px;'>DOWNLOAD PDF</a>";
-            } 
-            else {
-                // ভুল কোড দিলে যা দেখাবে
-                msg.style.backgroundColor = "#f8d7da";
-                msg.style.color = "#721c24";
-                msg.innerHTML = "<strong>RESULT: RECORD NOT FOUND!</strong><br>The document " + input + " is not verified.";
-            }
-        }, 2000);
-    }
-</script>
+            // এই কোডটি আপনার ফাইলে আপডেট করুন
+if(input.toUpperCase() === "AVCX") { 
+    msg.style.display = "block";
+    msg.style.backgroundColor = "#d4edda"; // সবুজ রঙ
+    msg.innerHTML = "<strong>Status: Verified ✅</strong><br>Document: Offer Letter Found<br><br>" +
+                    "<a href='your-pdf-file.pdf' target='_blank' style='background:#1a237e; color:white; padding:10px; text-decoration:none; border-radius:5px;'>VIEW PDF DOCUMENT</a>";
+}
