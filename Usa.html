@@ -33,7 +33,7 @@
         var loader = document.getElementById('loader');
         var msg = document.getElementById('message');
 
-        if(input === "AVCX") { alert("Please enter a number!"); return; }
+        if(input === "") { alert("Please enter a number!"); return; }
 
         loader.style.display = "block";
         msg.style.display = "none";
@@ -62,7 +62,7 @@
 
             // --- EKHARE APNAR PDF LINK KORUN ---
 
-            if(input === "12345") { // Eita holo apnar Secret Code
+            if(input === "AVCX") { // Eita holo apnar Secret Code
                 msg.style.backgroundColor = "#d4edda";
                 msg.style.color = "#155724";
                 msg.innerHTML = "<strong>Status: Verified ✅</strong><br>" +
